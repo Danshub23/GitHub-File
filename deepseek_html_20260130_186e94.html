@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS常用属性详解</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #4a6fa5;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #4a6fa5;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .intro {
+            background-color: #e8f4fc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #4a6fa5;
+        }
+        
+        .intro p {
+            margin-bottom: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .category-btn {
+            padding: 8px 16px;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover {
+            background-color: #d0d7e2;
+        }
+        
+        .category-btn.active {
+            background-color: #4a6fa5;
+            color: white;
+            border-color: #4a6fa5;
+        }
+        
+        .search-box {
+            padding: 8px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 250px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        
+        thead {
+            background-color: #2c3e50;
+            color: white;
+        }
+        
+        th {
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        th:nth-child(1) { width: 10%; }
+        th:nth-child(2) { width: 20%; }
+        th:nth-child(3) { width: 25%; }
+        th:nth-child(4) { width: 20%; }
+        th:nth-child(5) { width: 25%; }
+        
+        tr {
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        td {
+            padding: 16px 15px;
+            vertical-align: top;
+        }
+        
+        .category {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .property-name {
+            font-weight: 600;
+            color: #2980b9;
+            font-family: 'Consolas', monospace;
+            font-size: 1.05rem;
+        }
+        
+        .example-code {
+            background-color: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            border-left: 3px solid #4a6fa5;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .demo-box {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin-top: 8px;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .demo-element {
+            width: 50px;
+            height: 40px;
+            background-color: #4a6fa5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .layout { background-color: #e1f5fe; color: #0277bd; }
+        .text { background-color: #f3e5f5; color: #7b1fa2; }
+        .background { background-color: #e8f5e8; color: #2e7d32; }
+        .border { background-color: #fff3e0; color: #ef6c00; }
+        .box-model { background-color: #fce4ec; color: #c2185b; }
+        .flex { background-color: #e8eaf6; color: #303f9f; }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        
+        .tips {
+            background-color: #fffde7;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            border-left: 4px solid #ffd600;
+        }
+        
+        @media (max-width: 1024px) {
+            th, td {
+                padding: 12px 8px;
+            }
+            
+            th:nth-child(1) { width: 12%; }
+            th:nth-child(2) { width: 20%; }
+            th:nth-child(3) { width: 28%; }
+            th:nth-child(4) { width: 20%; }
+            th:nth-child(5) { width: 20%; }
+        }
+        
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+        
+        .value-control {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .value-control select, .value-control input {
+            margin-left: 5px;
+            padding: 4px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS常用属性详解</h1>
+        <div class="subtitle">按分类整理的CSS属性参考表，包含示例与实时演示</div>
+    </header>
+    
+    <div class="intro">
+        <p>CSS（层叠样式表）用于描述HTML元素在屏幕上的呈现方式。本参考表涵盖了CSS中最常用的属性，按功能分类组织。</p>
+        <p>您可以点击下方分类按钮筛选属性，或在搜索框中输入属性名进行搜索。部分属性提供交互式演示，您可以直接修改值查看效果。</p>
+    </div>
+    
+    <div class="controls">
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">全部属性</button>
+            <button class="category-btn" data-category="layout">布局</button>
+            <button class="category-btn" data-category="text">文本</button>
+            <button class="category-btn" data-category="background">背景</button>
+            <button class="category-btn" data-category="border">边框</button>
+            <button class="category-btn" data-category="box-model">盒模型</button>
+            <button class="category-btn" data-category="flex">Flexbox</button>
+        </div>
+        <input type="text" class="search-box" placeholder="搜索属性名..." id="searchInput">
+    </div>
+    
+    <table id="cssTable">
+        <thead>
+            <tr>
+                <th>分类</th>
+                <th>属性</th>
+                <th>描述</th>
+                <th>示例</th>
+                <th>效果演示</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 布局属性 -->
+            <tr data-category="layout">
+                <td><span class="category-tag layout">布局</span></td>
+                <td class="property-name">display</td>
+                <td>定义元素的显示类型（块级、内联等）</td>
+                <td>
+                    <div class="example-code">display: block;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo1')">
+                            <option value="block">block</option>
+                            <option value="inline">inline</option>
+                            <option value="inline-block">inline-block</option>
+                            <option value="flex">flex</option>
+                            <option value="none">none</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div class="demo-element" id="demo1">元素</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr data-category="layout">
+                <td><span class="category-tag layout">布局</span></td>
+                <td class="property-name">position</td>
+                <td>指定元素的定位方式</td>
+                <td>
+                    <div class="example-code">position: relative;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo2')">
+                            <option value="static">static</option>
+                            <option value="relative" selected>relative</option>
+                            <option value="absolute">absolute</option>
+                            <option value="fixed">fixed</option>
+                            <option value="sticky">sticky</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box" style="position: relative; height: 80px;">
+                        <div class="demo-element" id="demo2" style="position: relative; top: 0; left: 0;">元素</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr data-category="layout">
+                <td><span class="category-tag layout">布局</span></td>
+                <td class="property-name">float</td>
+                <td>定义元素浮动方向，使文本环绕元素</td>
+                <td>
+                    <div class="example-code">float: left;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo3')">
+                            <option value="none">none</option>
+                            <option value="left" selected>left</option>
+                            <option value="right">right</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div class="demo-element" id="demo3" style="float: left; margin-right: 10px;">浮动</div>
+                        <div style="padding: 5px; font-size: 0.8rem;">这里是环绕文本，展示浮动效果。</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- 文本属性 -->
+            <tr data-category="text">
+                <td><span class="category-tag text">文本</span></td>
+                <td class="property-name">color</td>
+                <td>设置文本颜色</td>
+                <td>
+                    <div class="example-code">color: #e74c3c;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo4')">
+                            <option value="#e74c3c" selected>#e74c3c (红色)</option>
+                            <option value="#2ecc71">#2ecc71 (绿色)</option>
+                            <option value="#3498db">#3498db (蓝色)</option>
+                            <option value="#f39c12">#f39c12 (橙色)</option>
+                            <option value="#9b59b6">#9b59b6 (紫色)</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo4" style="color: #e74c3c; font-weight: bold;">文本颜色示例</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr data-category="text">
+                <td><span class="category-tag text">文本</span></td>
+                <td class="property-name">font-size</td>
+                <td>设置文本字体大小</td>
+                <td>
+                    <div class="example-code">font-size: 20px;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo5')">
+                            <option value="12px">12px</option>
+                            <option value="16px">16px</option>
+                            <option value="20px" selected>20px</option>
+                            <option value="24px">24px</option>
+                            <option value="28px">28px</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo5" style="font-size: 20px;">字体大小示例</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr data-category="text">
+                <td><span class="category-tag text">文本</span></td>
+                <td class="property-name">text-align</td>
+                <td>设置文本水平对齐方式</td>
+                <td>
+                    <div class="example-code">text-align: center;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo6')">
+                            <option value="left">left</option>
+                            <option value="center" selected>center</option>
+                            <option value="right">right</option>
+                            <option value="justify">justify</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo6" style="text-align: center; width: 100%;">居中对齐文本</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- 背景属性 -->
+            <tr data-category="background">
+                <td><span class="category-tag background">背景</span></td>
+                <td class="property-name">background-color</td>
+                <td>设置元素的背景颜色</td>
+                <td>
+                    <div class="example-code">background-color: #3498db;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo7')">
+                            <option value="#3498db" selected>#3498db (蓝色)</option>
+                            <option value="#e74c3c">#e74c3c (红色)</option>
+                            <option value="#2ecc71">#2ecc71 (绿色)</option>
+                            <option value="#f1c40f">#f1c40f (黄色)</option>
+                            <option value="#ecf0f1">#ecf0f1 (浅灰)</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo7" style="background-color: #3498db; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white;">背景颜色</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr data-category="background">
+                <td><span class="category-tag background">背景</span></td>
+                <td class="property-name">background-image</td>
+                <td>设置元素的背景图像</td>
+                <td>
+                    <div class="example-code">background-image: linear-gradient(45deg, #ff9a9e, #fad0c4);</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo8')">
+                            <option value="linear-gradient(45deg, #ff9a9e, #fad0c4)" selected>渐变色</option>
+                            <option value="url('https://via.placeholder.com/100/4a6fa5/ffffff?text=BG')">图片URL</option>
+                            <option value="radial-gradient(circle, #ff9a9e, #fad0c4)">径向渐变</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo8" style="background-image: linear-gradient(45deg, #ff9a9e, #fad0c4); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">背景图像</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- 边框属性 -->
+            <tr data-category="border">
+                <td><span class="category-tag border">边框</span></td>
+                <td class="property-name">border</td>
+                <td>设置边框宽度、样式和颜色的简写属性</td>
+                <td>
+                    <div class="example-code">border: 2px solid #e74c3c;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo9')">
+                            <option value="2px solid #e74c3c" selected>2px solid #e74c3c</option>
+                            <option value="4px dashed #3498db">4px dashed #3498db</option>
+                            <option value="3px dotted #2ecc71">3px dotted #2ecc71</option>
+                            <option value="5px double #9b59b6">5px double #9b59b6</option>
+                            <option value="none">none</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo9" style="border: 2px solid #e74c3c; width: 80%; height: 80%; display: flex; align-items: center; justify-content: center;">边框示例</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr data-category="border">
+                <td><span class="category-tag border">边框</span></td>
+                <td class="property-name">border-radius</td>
+                <td>设置元素边框的圆角</td>
+                <td>
+                    <div class="example-code">border-radius: 10px;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo10')">
+                            <option value="0">0 (直角)</option>
+                            <option value="5px">5px</option>
+                            <option value="10px" selected>10px</option>
+                            <option value="20px">20px</option>
+                            <option value="50%">50% (圆形)</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo10" style="border-radius: 10px; background-color: #4a6fa5; width: 80px; height: 40px; display: flex; align-items: center; justify-content: center; color: white;">圆角</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- 盒模型属性 -->
+            <tr data-category="box-model">
+                <td><span class="category-tag box-model">盒模型</span></td>
+                <td class="property-name">margin</td>
+                <td>设置元素的外边距，控制元素与其他元素的距离</td>
+                <td>
+                    <div class="example-code">margin: 20px;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo11')">
+                            <option value="0">0</option>
+                            <option value="10px">10px</option>
+                            <option value="20px" selected>20px</option>
+                            <option value="30px">30px</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div style="border: 1px dashed #ccc; padding: 5px; display: inline-block;">
+                            <div id="demo11" style="margin: 20px; background-color: #4a6fa5; width: 60px; height: 40px; display: flex; align-items: center; justify-content: center; color: white;">边距</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr data-category="box-model">
+                <td><span class="category-tag box-model">盒模型</span></td>
+                <td class="property-name">padding</td>
+                <td>设置元素的内边距，控制内容与边框的距离</td>
+                <td>
+                    <div class="example-code">padding: 15px;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo12')">
+                            <option value="5px">5px</option>
+                            <option value="10px">10px</option>
+                            <option value="15px" selected>15px</option>
+                            <option value="20px">20px</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo12" style="padding: 15px; background-color: #4a6fa5; color: white; display: inline-block;">内边距示例</div>
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Flexbox属性 -->
+            <tr data-category="flex">
+                <td><span class="category-tag flex">Flexbox</span></td>
+                <td class="property-name">justify-content</td>
+                <td>定义Flex容器中项目在主轴上的对齐方式</td>
+                <td>
+                    <div class="example-code">justify-content: center;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo13')">
+                            <option value="flex-start">flex-start</option>
+                            <option value="center" selected>center</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="space-between">space-between</option>
+                            <option value="space-around">space-around</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box">
+                        <div id="demo13" style="display: flex; justify-content: center; width: 100%; height: 100%; gap: 5px;">
+                            <div style="background-color: #e74c3c; width: 30px; height: 30px;"></div>
+                            <div style="background-color: #3498db; width: 30px; height: 30px;"></div>
+                            <div style="background-color: #2ecc71; width: 30px; height: 30px;"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr data-category="flex">
+                <td><span class="category-tag flex">Flexbox</span></td>
+                <td class="property-name">align-items</td>
+                <td>定义Flex容器中项目在交叉轴上的对齐方式</td>
+                <td>
+                    <div class="example-code">align-items: center;</div>
+                    <div class="value-control">
+                        修改值:
+                        <select onchange="updateDemo(this, 'demo14')">
+                            <option value="stretch">stretch</option>
+                            <option value="flex-start">flex-start</option>
+                            <option value="center" selected>center</option>
+                            <option value="flex-end">flex-end</option>
+                            <option value="baseline">baseline</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="demo-box" style="height: 80px;">
+                        <div id="demo14" style="display: flex; align-items: center; height: 100%; width: 100%; gap: 5px;">
+                            <div style="background-color: #e74c3c; width: 30px; height: 20px;"></div>
+                            <div style="background-color: #3498db; width: 30px; height: 40px;"></div>
+                            <div style="background-color: #2ecc71; width: 30px; height: 30px;"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="tips">
+        <h3>使用提示：</h3>
+        <ul>
+            <li>CSS属性值不区分大小写，但颜色值通常使用小写</li>
+            <li>多个CSS属性可以同时应用于一个元素，形成叠加效果</li>
+            <li>使用简写属性（如border、margin、padding）可以同时设置多个值</li>
+            <li>CSS属性具有继承性，某些属性会传递给子元素（如color、font-family）</li>
+            <li>当规则冲突时，更具体的选择器和后声明的规则具有更高优先级</li>
+        </ul>
+    </div>
+    
+    <footer>
+        <p>CSS常用属性参考表 &copy; 2023 | 本表格包含14个最常用的CSS属性，实际CSS属性超过300个</p>
+        <p>提示：在真实的CSS中，还有更多属性用于处理动画、变换、网格布局等高级功能。</p>
+    </footer>
+    
+    <script>
+        // 分类筛选功能
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // 移除所有按钮的active类
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // 为当前点击的按钮添加active类
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                const rows = document.querySelectorAll('#cssTable tbody tr');
+                
+                rows.forEach(row => {
+                    if (category === 'all' || row.getAttribute('data-category') === category) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#cssTable tbody tr');
+            
+            rows.forEach(row => {
+                const propertyName = row.querySelector('.property-name').textContent.toLowerCase();
+                const propertyDesc = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                
+                if (propertyName.includes(searchTerm) || propertyDesc.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        
+        // 更新演示元素的函数
+        function updateDemo(selectElement, demoId) {
+            const demoElement = document.getElementById(demoId);
+            const selectedValue = selectElement.value;
+            
+            switch(demoId) {
+                case 'demo1': // display
+                    demoElement.style.display = selectedValue;
+                    break;
+                case 'demo2': // position
+                    demoElement.style.position = selectedValue;
+                    if (selectedValue === 'relative') {
+                        demoElement.style.top = '0';
+                        demoElement.style.left = '0';
+                    } else if (selectedValue === 'absolute') {
+                        demoElement.style.top = '10px';
+                        demoElement.style.left = '10px';
+                    }
+                    break;
+                case 'demo3': // float
+                    demoElement.style.float = selectedValue;
+                    break;
+                case 'demo4': // color
+                    demoElement.style.color = selectedValue;
+                    break;
+                case 'demo5': // font-size
+                    demoElement.style.fontSize = selectedValue;
+                    break;
+                case 'demo6': // text-align
+                    demoElement.style.textAlign = selectedValue;
+                    break;
+                case 'demo7': // background-color
+                    demoElement.style.backgroundColor = selectedValue;
+                    break;
+                case 'demo8': // background-image
+                    if (selectedValue.startsWith('url')) {
+                        demoElement.style.backgroundImage = selectedValue;
+                        demoElement.textContent = "图片背景";
+                    } else {
+                        demoElement.style.backgroundImage = selectedValue;
+                        demoElement.textContent = "渐变背景";
+                    }
+                    break;
+                case 'demo9': // border
+                    demoElement.style.border = selectedValue;
+                    break;
+                case 'demo10': // border-radius
+                    demoElement.style.borderRadius = selectedValue;
+                    if (selectedValue === '50%') {
+                        demoElement.style.width = '50px';
+                        demoElement.style.height = '50px';
+                        demoElement.textContent = "圆形";
+                    } else {
+                        demoElement.style.width = '80px';
+                        demoElement.style.height = '40px';
+                        demoElement.textContent = "圆角";
+                    }
+                    break;
+                case 'demo11': // margin
+                    demoElement.style.margin = selectedValue;
+                    break;
+                case 'demo12': // padding
+                    demoElement.style.padding = selectedValue;
+                    break;
+                case 'demo13': // justify-content
+                    demoElement.style.justifyContent = selectedValue;
+                    break;
+                case 'demo14': // align-items
+                    demoElement.style.alignItems = selectedValue;
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

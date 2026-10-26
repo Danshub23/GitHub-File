@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>F.2 上學期統測 考試範圍綜合</title>
+<style>
+  :root{
+    --text:#1f2430;
+    --muted:#69707d;
+    --border:#dcdfe6;
+    --bg:#f6f5f2;
+    --card:#ffffff;
+    --panel:#fafbfc;
+    --accent:#2563eb;
+    --accent-soft:#e8effc;
+    --link:#1e3a8a;
+    --warn:#b45309;
+    --warn-bg:#fff8ea;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    padding:24px 16px 64px;
+    background:var(--bg);
+    color:var(--text);
+    font-family:system-ui,-apple-system,"PingFang TC","Microsoft JhengHei","Noto Sans TC","Microsoft YaHei",sans-serif;
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:880px;margin:0 auto}
+
+  /* ---------- 卡片（頁首、總覽、科目共用） ---------- */
+  header,
+  .overview,
+  section.subject{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:20px 24px;
+    margin-bottom:18px;
+    box-shadow:0 1px 2px rgba(16,24,40,.04);
+  }
+
+  /* ---------- 頁首 ---------- */
+  header h1{
+    font-size:23px;
+    margin:0 0 6px;
+    letter-spacing:.01em;
+  }
+  header p{margin:0;color:var(--muted);font-size:14px}
+
+  /* ---------- 科目卡 ---------- */
+  section.subject > h2{
+    margin:0 0 4px;
+    font-size:19px;
+    color:var(--accent);
+    border-bottom:2px solid var(--accent-soft);
+    padding-bottom:9px;
+  }
+
+  /* ---------- 標題層級 ---------- */
+  h3{
+    font-size:15px;
+    margin:22px 0 8px;
+    padding-left:9px;
+    border-left:4px solid var(--accent);
+  }
+  h4{
+    font-size:14px;
+    margin:14px 0 6px;
+    color:#4a5160;
+    letter-spacing:.02em;
+  }
+
+  /* ---------- 總覽卡 ---------- */
+  .overview h2{margin:0 0 12px;font-size:17px}
+
+  /* ---------- 資料標籤 ---------- */
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .meta span{
+    background:var(--accent-soft);
+    color:var(--accent);
+    border-radius:20px;
+    padding:2px 12px;
+    font-size:12.5px;
+    white-space:nowrap;
+  }
+
+  /* ---------- 連結 ---------- */
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  a.to-notes{font-size:13px;white-space:nowrap}
+
+  /* ---------- 表格 ---------- */
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0 4px}
+  th,td{border:1px solid var(--border);padding:8px 11px;text-align:left;vertical-align:top}
+  th{background:var(--panel);font-weight:600;font-size:13.5px;letter-spacing:.02em}
+  td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  tr.total td{font-weight:700;background:var(--panel)}
+  tr.todo td{color:#9aa1ad}
+
+  /* ---------- 提示框 ---------- */
+  .note{
+    margin:12px 0;
+    padding:11px 15px;
+    border-left:4px solid var(--accent);
+    border-radius:0 6px 6px 0;
+    background:var(--panel);
+    font-size:14.5px;
+  }
+  .note.warn{border-left-color:var(--warn);background:var(--warn-bg)}
+
+  /* ---------- 樣本區 ---------- */
+  .sample{
+    margin:12px 0;
+    padding:14px 16px;
+    border:1px dashed var(--border);
+    border-radius:8px;
+    background:var(--panel);
+  }
+  .sample .q{margin:6px 0;font-size:14.5px}
+  .sample table{margin-top:10px;background:#fff}
+
+  /* ---------- 清單 ---------- */
+  ul,ol{margin:8px 0;padding-left:22px}
+  li{margin:3px 0}
+  ol.vocab{columns:2;column-gap:32px;font-size:15px}
+  ol.vocab li{break-inside:avoid}
+
+  /* ---------- 文字輔助 ---------- */
+  .muted{color:var(--muted)}
+  .warn{color:var(--warn)}
+  em{font-style:normal;color:var(--link)}
+
+  /* ---------- 窄螢幕 ---------- */
+  @media (max-width:720px){
+    body{padding:12px 10px 40px;font-size:15px}
+    header,.overview,section.subject{padding:16px 16px;border-radius:8px}
+    header h1{font-size:20px}
+    section.subject > h2{font-size:17px}
+    table{font-size:13.5px}
+    th,td{padding:6px 8px}
+    ol.vocab{columns:1}
+  }
+
+  /* ---------- 列印 ---------- */
+  @media print{
+    body{padding:0;font-size:11pt;background:#fff}
+    header,.overview,section.subject{
+      box-shadow:none;
+      border:1px solid #ccc;
+      break-inside:avoid;
+      margin-bottom:10px;
+    }
+    tr,table{break-inside:avoid}
+    .note,.sample{background:#fff}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>F.2 上學期統測 考試範圍綜合</h1>
+    <p>2026–2027 年度　·　依各科通告及備忘整合</p>
+  </header>
+
+  <!-- ============ 總表 ============ -->
+  <div class="overview">
+    <h2>總覽</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>科目</th>
+          <th>日期</th>
+          <th>時間</th>
+          <th>卷別結構／總分</th>
+          <th>狀態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>English</td>
+          <td>2026-10-26（星期一）</td>
+          <td>1 小時</td>
+          <td>Listening + Reading &amp; Usage；Bonus 10 分（Optional）</td>
+          <td>已整理</td>
+        </tr>
+        <tr>
+          <td><a href="ChineseHistory/index.html">中國歷史</a></td>
+          <td>待補</td>
+          <td>待補</td>
+          <td>歷史常識題 30% + 歷史資料題 30% + 評論題 40%</td>
+          <td>已整理　<a class="to-notes" href="ChineseHistory/index.html">→ 筆記</a></td>
+        </tr>
+        <tr>
+          <td>History（歷史科）</td>
+          <td>待補</td>
+          <td>待補</td>
+          <td>MC / Fill in the blanks / T&amp;F / Chronological order / Short Q / DBQ</td>
+          <td>已整理</td>
+        </tr>
+        <tr>
+          <td>IS（綜合科學）</td>
+          <td>待補</td>
+          <td>1 小時</td>
+          <td>A 30 + B 5 + C 20 + D 45 + E Bonus 5 = 100 + 5</td>
+          <td>已整理</td>
+        </tr>
+        <tr>
+          <td>CES（公民、經濟及社會科）</td>
+          <td>待補</td>
+          <td>待補</td>
+          <td>多項選擇題 + 填充題 + 資料回應題</td>
+          <td>已整理</td>
+        </tr>
+        <tr>
+          <td><a href="Chinese/index.html">中文</a></td>
+          <td>2026-10-27（星期二）</td>
+          <td>1 小時</td>
+          <td>閱讀 70 ＋ 課文問答 15 ＋ 自學計劃 15 ＋ 加分 4</td>
+          <td>已整理　<a class="to-notes" href="Chinese/index.html">→ 筆記</a></td>
+        </tr>
+        <tr class="todo">
+          <td>Math</td><td>待補</td><td>待補</td><td>待補</td><td>預留</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ English ============ -->
+  <section class="subject">
+    <h2>1. English</h2>
+    <div class="meta">
+      <span>2026 年 10 月 26 日（星期一）</span>
+      <span>1 小時</span>
+      <span>Tin Ka Ping Secondary School</span>
+      <span>F.2 English Language</span>
+    </div>
+
+    <h3>Listening</h3>
+    <ul>
+      <li>共有 <strong>兩個 listening tasks</strong>。</li>
+      <li>帶備鉛筆及原子筆；<strong>聽力部分必須用鉛筆</strong>。</li>
+      <li>仔細閱讀指示（instructions）。</li>
+    </ul>
+    <h4>Skills Tested</h4>
+    <ol>
+      <li>listening to descriptions, dates and times, order of events</li>
+      <li>listening to numbers or sequence</li>
+      <li>listening for specific information</li>
+      <li>identifying a picture or photograph</li>
+      <li>taking notes on a note sheet</li>
+      <li>completing a table</li>
+    </ol>
+
+    <h3>Reading and Usage</h3>
+    <h4>Format</h4>
+    <ol>
+      <li>Comprehension — 1 text（vocab guessing、referencing、inferencing、summarizing 等）</li>
+      <li>Grammar &amp; Vocabulary</li>
+    </ol>
+    <h4>Question types</h4>
+    <ul>
+      <li>open cloze</li>
+      <li>sentence writing</li>
+      <li>fill in the blanks</li>
+      <li>referencing / inferencing / summarizing</li>
+      <li>T/F/NG</li>
+      <li>multiple-choice</li>
+      <li>proofreading</li>
+    </ul>
+    <div class="note">
+      <strong>注意：</strong>MC 及 T/F/NG 用鉛筆作答。留意 parts of speech、tenses、
+      subject-verb agreement、plural / singular forms 等。
+    </div>
+
+    <h3>Grammar Items</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Grammar Items</th>
+          <th>Materials</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 Starter</td>
+          <td>
+            <ul>
+              <li>Comparative and Superlative Adjectives</li>
+              <li>Conditionals (Type 0, 1, 2)</li>
+              <li>Passive Voice (Present Simple &amp; Past Simple)</li>
+              <li>Interrogatives</li>
+              <li>Subject-Verb Agreement</li>
+            </ul>
+          </td>
+          <td>M0 Grammar Booklet</td>
+        </tr>
+        <tr>
+          <td>1 Sightseeing</td>
+          <td>
+            <ul>
+              <li>Mixed Tenses: Present Simple, Present Continuous, Past Simple, Future Simple, Present Perfect, Past Continuous</li>
+              <li>Question Tags</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Oxford 2A U4</li>
+              <li>SIG U2, 3, 4, 5</li>
+              <li>Worksheets</li>
+              <li>M1 Grammar Booklet</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">Items not listed above may also appear.（未列出的項目也可能出現。）</div>
+
+    <h3>Vocabulary</h3>
+    <ol class="vocab">
+      <li>discovery</li>
+      <li>hit the road</li>
+      <li>seek out</li>
+      <li>venture into</li>
+      <li>appeal to</li>
+      <li>award-winning</li>
+      <li>world-class</li>
+      <li>culinary</li>
+      <li>indulge in</li>
+      <li>panoramic view</li>
+      <li>vibrant</li>
+      <li>take the plunge</li>
+      <li>set out</li>
+      <li>accommodation</li>
+      <li>hospitable</li>
+      <li>authentic</li>
+      <li>escape from</li>
+      <li>captivating</li>
+      <li>scenic</li>
+      <li>paradise</li>
+    </ol>
+    <p>須掌握詞義、拼寫、詞性及詞形變化（meanings / spelling / parts of speech / word forms）。</p>
+
+    <h3>Bonus（10 marks, Optional）</h3>
+    <ul>
+      <li>Format: Open Cloze（gap filling in context）</li>
+      <li>也可能考核課程大綱（syllabus）以外的詞彙及語法項目。</li>
+    </ul>
+
+    <h3>Remarks / 用品</h3>
+    <ul>
+      <li>帶筆及鉛筆。</li>
+      <li>Listening、MC、T/F/NG 用 <strong>鉛筆</strong>；其他部分用 <strong>pen</strong>。</li>
+      <li>不依指示會被扣分。</li>
+      <li>未列項目亦可能出現，用以獎勵表現突出的同學。</li>
+    </ul>
+  </section>
+
+  <!-- ============ 中國歷史 ============ -->
+  <section class="subject">
+    <h2>2. 中國歷史</h2>
+    <div class="meta">
+      <span>田家炳中學</span>
+      <span>中二級</span>
+      <span>上學期統測</span>
+    </div>
+
+    <h3>考核方式</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>方式</th>
+          <th class="num">比重</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>歷史常識題<br>（多項選擇題／填充／短問答，以多項選擇題為主）</td>
+          <td class="num">約 30%</td>
+        </tr>
+        <tr>
+          <td>歷史資料題<br>（設額外加分，可自由選擇作答）<br>
+              <span class="warn">額外加分：約 15%</span></td>
+          <td class="num">約 30%</td>
+        </tr>
+        <tr>
+          <td>評論題</td>
+          <td class="num">約 40%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>溫習範圍</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>內容</th>
+          <th>材料</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>五代十國的亂局<br>（及北宋立國至一統南北的過程）</td>
+          <td>課題一工作紙 頁 1–5<br>課本 頁 5–8</td>
+        </tr>
+        <tr>
+          <td>宋初國策及其影響</td>
+          <td>課題一工作紙 頁 6–15<br>課本 頁 6–15</td>
+        </tr>
+        <tr>
+          <td>熙豐變法的背景、措施內容及失敗原因</td>
+          <td>課題二工作紙 頁 2–8<br>課本 頁 21–25</td>
+        </tr>
+        <tr>
+          <td>新舊黨爭的背景、過程及影響<br>
+              <strong>（此部分只會在歷史常識題考問）</strong></td>
+          <td>課題二工作紙 頁 9–11<br>課本 頁 26–28</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">＊如購買舊書，課本頁數或略有不同。</div>
+  </section>
+
+  <!-- ============ History（歷史科） ============ -->
+  <section class="subject">
+    <h2>3. History（歷史科）</h2>
+    <div class="meta">
+      <span>2026–27</span>
+      <span>S2</span>
+      <span>1st Uniform Test</span>
+    </div>
+
+    <h3>Topics</h3>
+    <ol>
+      <li>Ch.1 &nbsp;What is history</li>
+      <li>Ch.2 &nbsp;Middle Ages</li>
+      <li>Ch.3 &nbsp;Renaissance</li>
+      <li>Ch.4 &nbsp;Reformation</li>
+    </ol>
+
+    <h3>Forms of questions</h3>
+    <ol>
+      <li>Multiple-Choice</li>
+      <li>Fill in the blanks</li>
+      <li>True or false</li>
+      <li>Chronological order</li>
+      <li>Short Question</li>
+      <li>Data-Based Question</li>
+    </ol>
+
+    <h3>True or False — Sample</h3>
+    <div class="sample">
+      <p class="q">
+        Study the statements on the question paper and decide which are true and which are false.
+        Put a ‘✓’ in the suitable box. For the false statements, write down the mistakes and correct them.
+      </p>
+      <p class="q">1. Tin Ka Ping Secondary School locates in Fanling.</p>
+      <p class="q">2. Coffee is a drink prepared from roasted cocoa beans.</p>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>True</th>
+            <th>False</th>
+            <th>Mistake</th>
+            <th>Correction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td></td>
+            <td>✓</td>
+            <td>cocoa</td>
+            <td>coffee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <strong>提醒：</strong>答 False 的題目，除判斷真假外，還須寫出錯誤（<em>mistake</em>）並提供改正（<em>correction</em>）。
+    </div>
+  </section>
+
+  <!-- ============ IS ============ -->
+  <section class="subject">
+    <h2>4. IS（綜合科學）</h2>
+    <div class="meta">
+      <span>1 小時</span>
+      <span>Unit 7 – Living Things and Air</span>
+    </div>
+
+    <h3>Content</h3>
+    <ul>
+      <li>Textbook 2A：P.2–34, 37–47 &amp; 53<br>
+          <span class="muted">（P.54–57：自學）</span></li>
+      <li>Unit 7 Worksheet</li>
+      <li>Assignment Book 2A</li>
+      <li>Fair Test（+ Graph plotting）</li>
+    </ul>
+
+    <h3>Paper Structure</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th class="num">Mark Allocation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>A — Multiple choice</td><td class="num">30</td></tr>
+        <tr><td>B — True or False</td><td class="num">5</td></tr>
+        <tr><td>C — Short Questions</td><td class="num">20</td></tr>
+        <tr><td>D — Long Questions</td><td class="num">45</td></tr>
+        <tr><td>E — Bonus</td><td class="num">5</td></tr>
+        <tr class="total"><td>Total</td><td class="num">100 + 5</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Stationery / 用品</h3>
+    <ul>
+      <li>blue ball pen</li>
+      <li>pencil</li>
+      <li>ruler</li>
+      <li>rubber</li>
+    </ul>
+
+    <h3>特別指示</h3>
+    <ul>
+      <li>標有 <strong>(*)</strong> 的題目，須用完整句子（<strong>complete sentences</strong>）作答。</li>
+    </ul>
+  </section>
+
+  <!-- ============ CES ============ -->
+  <section class="subject">
+    <h2>5. CES（公民、經濟及社會科）</h2>
+    <div class="meta">
+      <span>中二級</span>
+      <span>上學期統測</span>
+    </div>
+
+    <h3>溫習範圍</h3>
+    <ol>
+      <li>課本單元 <strong>2.1</strong> P.2–P.37</li>
+      <li>《公民+》第 59 期 — 主題報道 2：<br>
+          「港人逐夢太空 融入國家航天一大步」</li>
+      <li>施政報告 2026 — 閱讀資料共兩頁</li>
+    </ol>
+
+    <h3>注意事項</h3>
+    <ol>
+      <li>試卷分三部分：<strong>多項選擇題、填充題及資料回應題</strong>。</li>
+      <li>題目<strong>全用中文作答</strong>。</li>
+      <li>請帶備<strong>計算機</strong>。</li>
+      <li>若有問題，請向屬班科任老師查詢。</li>
+    </ol>
+
+    <h3>探究課題（可能作資料回應題背景）</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>角色</th>
+          <th>探究課題</th>
+          <th>重點</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>角色 A<br>專家組：科技創新先鋒</td>
+          <td>新質生產力下的香港創科藍圖與低空經濟</td>
+          <td>
+            沙嶺智算園區（238 億元、180,000 PFLOPS）；<br>
+            低空經濟：監管沙盒 X、無人機送賣、eVTOL、2028 智能低空交通管理系統
+          </td>
+        </tr>
+        <tr>
+          <td>角色 B<br>專家組：北部都會區規劃師</td>
+          <td>雙城三圈與大學城帶來的空間格局重塑</td>
+          <td>
+            5 年產 900 公頃熟地、7 萬住宅單位；<br>
+            北區大學城逾 1,000 公頃；<br>
+            2035 年港深西部鐵路及北環線主線開通
+          </td>
+        </tr>
+        <tr>
+          <td>角色 C<br>專家組：民生福祉保障官</td>
+          <td>告別劣質劏房與應對人口老化的「組合拳」</td>
+          <td>
+            《分間單位租務及安全管制條例》立法；<br>
+            2030 年前取締劣質劏房；<br>
+            11 項鼓勵生育與安老支援組合拳
+          </td>
+        </tr>
+        <tr>
+          <td>角色 D<br>專家組：國家安全與文化大使</td>
+          <td>築牢國安防線與建設中外文化藝術交流中心</td>
+          <td>
+            古洞北「國家發展和成就博物館」；<br>
+            國家安全展覽廳擴建 + VR；<br>
+            「文化出海先導計劃」、中華文化節
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ 待補科目 ============ -->
+  <section class="subject">
+    <h2>6. 其他科目（待補）</h2>
+    <p class="muted">
+      以下科目暫未收到考試範圍通告，先留空；收到後可依同一格式補上。
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>科目</th>
+          <th>日期／時間</th>
+          <th>範圍</th>
+          <th>題型／分數</th>
+          <th>用品</th>
+          <th>特別要求</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="todo"><td>Math</td><td>待補</td><td>待補</td><td>待補</td><td>待補</td><td>待補</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+</body>
+</html>
